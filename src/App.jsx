@@ -1,8 +1,9 @@
+import Game from './components/Game';
+
 function App() {
-  console.log('hiiii');
   return (
     <>
-      <h1>Hi</h1>
+      <Game></Game>
     </>
   );
 }
