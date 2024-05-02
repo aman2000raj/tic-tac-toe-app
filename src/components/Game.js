@@ -17,6 +17,10 @@ function Game() {
   function jumpTo(nextMove) {
     setCurrentMove(nextMove);
   }
+  function resetBoard() {
+    setHistory([Array(9).fill(null)]);
+    setCurrentMove(0);
+  }
 
   const moves = history.map((squares, move) => {
     let description;
@@ -40,12 +44,14 @@ function Game() {
             xIsNext={xIsNext}
             squares={currentSquares}
             onPlay={handlePlay}
+            noOfMoves={currentMove}
           />
         </div>
         <div className='game-info'>
           <ol>{moves}</ol>
         </div>
       </div>
+      <button onClick={resetBoard}>Reset Board</button>
     </div>
   );
 }
