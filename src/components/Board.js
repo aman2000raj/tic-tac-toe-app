@@ -3,21 +3,17 @@ import { useState } from 'react';
 import Square from './Square';
 import calculateWinnner from './calculateWinnner';
 
-function Board() {
-  const [xIsNext, setXIsNext] = useState(true);
-  const [squares, setSquares] = useState(Array(9).fill(null));
-
+function Board({ xIsNext, squares, onPlay }) {
   function handleClick(idx) {
     if (squares[idx] || calculateWinnner(squares)) return;
-    const nextSquare = squares.slice();
+    const nextSquares = squares.slice();
     if (xIsNext) {
-      nextSquare[idx] = 'X';
+      nextSquares[idx] = 'X';
     } else {
-      nextSquare[idx] = 'O';
+      nextSquares[idx] = 'O';
     }
 
-    setSquares(nextSquare);
-    setXIsNext(!xIsNext);
+    onPlay(nextSquares);
   }
 
   const winner = calculateWinnner(squares);
