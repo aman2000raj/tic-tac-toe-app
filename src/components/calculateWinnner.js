@@ -14,12 +14,11 @@ function calculateWinnner(squares) {
     if (
       squares[posA] &&
       squares[posA] === squares[posB] &&
-      squares[posA] &&
-      squares[posC]
+      squares[posA] === squares[posC]
     ) {
       return squares[posA];
     }
-    return null;
   }
+  return null;
 }
 export default calculateWinnner;
