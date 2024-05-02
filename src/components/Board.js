@@ -3,7 +3,14 @@ import { useState } from 'react';
 import Square from './Square';
 import calculateWinnner from './calculateWinnner';
 
-function Board({ xIsNext, squares, onPlay }) {
+function Board({ xIsNext, squares, onPlay, noOfMoves }) {
+  const winner = calculateWinnner(squares);
+  let status = winner
+    ? `Winner: ${winner}`
+    : noOfMoves === 9
+    ? "It's a Draw"
+    : `Next player: ${xIsNext ? 'X' : 'O'}`;
+
   function handleClick(idx) {
     if (squares[idx] || calculateWinnner(squares)) return;
     const nextSquares = squares.slice();
@@ -14,14 +21,6 @@ function Board({ xIsNext, squares, onPlay }) {
     }
 
     onPlay(nextSquares);
-  }
-
-  const winner = calculateWinnner(squares);
-  let status;
-  if (winner) {
-    status = 'Winner:' + winner;
-  } else {
-    status = 'Next player:' + (xIsNext ? 'X' : 'O');
   }
 
   return (
